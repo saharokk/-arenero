@@ -1,0 +1,15 @@
+#tracklist {
+    color: blue;
+    width: 700px;
+    
+}
+.center{
+    text-align: center;
+
+}
+.but{
+    height:40px;
+    width:100px;
+   
+
+}

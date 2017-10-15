@@ -1,0 +1,89 @@
+<html>
+<head>
+<title>DIKO</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+ <link rel="stylesheet" type="text/css" href="style.css">
+ <script>  
+
+
+      
+        function show()  
+        {  
+            $.ajax({  
+                url: "state.php",  
+                cache: false,  
+                success: function(html){  
+                    $("#content").html(html); 
+				}
+        });
+}    
+
+     function send(dir, trn)
+{
+$.ajax({
+    url: "outproc.php",
+    type: "POST",
+    data: ("dir="+dir+"&trn="+trn),
+/*    success: function(data){
+     alert(data);
+    }*/
+    });
+}
+
+
+ready(function(){  
+
+
+    show();  
+      //      setInterval('show()',50); 
+//loop();
+}); 
+  //      })();
+
+
+
+</script>
+    
+    
+    
+</head>
+    <body>
+          <div class="r">
+          <p class="r1">DIKO Test unit</p>
+          <div class="r2" style="display:inline-block;">
+          <div class="r3" id="content"></div> 
+          <div class="r3"> <sup></sup></div>
+          </div>
+          </div>
+        
+
+        
+
+          <table class="table table-striped" style="width: 500px;">
+	<tbody>
+		<tr>
+			<td></td>
+			<td><input name="UP" class="btn btn-sm btn-primary" id="buttonUPClick" type="button" value="UP" onclick=send('w','0') /></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td><input name="LEFT" class="btn btn-sm btn-primary" id="buttonLEFTClick" type="button" value="LEFT" onclick=send('0','a') /></td>
+			<td><input name="DOWN" class="btn btn-sm btn-primary" id="buttonDOWNClick" type="button" value="DOWN" onclick=send('s','0') /></td>
+			<td><input name="RIGHT" class="btn btn-sm btn-primary" id="buttonRIGHTClick" type="button" value="RIGHT" onclick=send('0','d') /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input name="STOP" class="btn btn-sm btn-danger" id="bSTOP" type="button" value="STOP" onclick=send('b','0') /></td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+         
+
+        
+        
+   </body>
+</html> 

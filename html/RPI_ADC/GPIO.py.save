@@ -1,0 +1,25 @@
+import RPi.GPIO as GPIO
+import time
+def Fwrt(filename, str):
+    f = open(filename, 'w')
+    f.write(str+'\n')
+    f.close()
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(25, GPIO.IN)
+GPIO.setup(14, GPIO.OUT)
+#GPIO.output(14, True)
+NUM_CYCLES = 100
+while True:
+	start = time.time()
+	for impulse_count in range(NUM_CYCLES):
+    		GPIO.wait_for_edge(25, GPIO.FALLING)
+	duration = time.time() - start      #seconds to run for loop
+	print "duration= " + str(duration)
+	frequency = "%.3f" %(NUM_CYCLES / duration)   #in Hz
+	voltage = "%.3f" %(NUM_CYCLES/(duration*2526))
+	infile =  'out.txt'
+	Fwrt(infile, str(voltage))          
+
+	print 'freq = '+str(frequency)
+	print 'voltage = '+ str(voltage)
